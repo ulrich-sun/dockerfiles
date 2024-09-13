@@ -9,7 +9,8 @@ RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo; \
 
 
 COPY ./systemctl /usr/bin/systemctl
-COPY ./kubernetes.repo /etc/yum.repos.d/
+COPY ./kubernetes.repo /etc/yum.repos.d/ 
+RUN yum update -y 
 
 RUN curl -fsSL https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
 
