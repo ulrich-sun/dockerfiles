@@ -3,16 +3,16 @@ FROM centos:7
 COPY ./systemctl /usr/bin/systemctl
 COPY ./kubernetes.repo /etc/yum.repos.d/
 
-RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo; \
-    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo; \
-    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo; \
-    yum -y update;
+RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo \
+    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo \
+    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo \
+    yum -y update
 
 
-RUN yum install -y docker-ce; \
-    && docker-ce-cli; \ 
-    && containerd.io; \
-    && docker-buildx-plugin; \
+RUN yum install -y docker-ce \
+    && docker-ce-cli \ 
+    && containerd.io \
+    && docker-buildx-plugin \
     && docker-compose-plugin curl git 
 
 RUN curl -Lf -o /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
@@ -23,7 +23,7 @@ ENV VERSION=1.28
 RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_7/devel:kubic:libcontainers:stable.repo
 RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:${VERSION}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo
 
-RUN yum intall -y kubectl-1.29.1 kubeadm-1.29.1 kubelet-1.29.1; \ 
+RUN yum intall -y kubectl-1.29.1 kubeadm-1.29.1 kubelet-1.29.1 \ 
     && cri-o cri-tools
 
 VOLUME ["/var/lib/kubelet"]
