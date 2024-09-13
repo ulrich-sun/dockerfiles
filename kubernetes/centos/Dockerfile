@@ -20,8 +20,7 @@ ENV VERSION=1.28
 RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_7/devel:kubic:libcontainers:stable.repo
 RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:${VERSION}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo
 
-RUN yum intall -y kubectl-1.29.1 kubeadm-1.29.1 kubelet-1.29.1 \ 
-    && cri-o cri-tools
+RUN yum intall -y kubectl-1.29.1 kubeadm-1.29.1 kubelet-1.29.1 cri-o cri-tools
 
 VOLUME ["/var/lib/kubelet"]
 
