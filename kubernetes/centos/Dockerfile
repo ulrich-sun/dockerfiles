@@ -10,10 +10,10 @@ RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo; \
 
 
 RUN yum install -y docker-ce; \
-    docker-ce-cli; \ 
-    containerd.io; \
-    docker-buildx-plugin; \
-    docker-compose-plugin curl git 
+    && docker-ce-cli; \ 
+    && containerd.io; \
+    && docker-buildx-plugin; \
+    && docker-compose-plugin curl git 
 
 RUN curl -Lf -o /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
     && curl -Lf -o /usr/bin/docker-compose https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) \
@@ -24,7 +24,7 @@ RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://do
 RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:${VERSION}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo
 
 RUN yum intall -y kubectl-1.29.1 kubeadm-1.29.1 kubelet-1.29.1; \ 
-    cri-o cri-tools
+    && cri-o cri-tools
 
 VOLUME ["/var/lib/kubelet"]
 
