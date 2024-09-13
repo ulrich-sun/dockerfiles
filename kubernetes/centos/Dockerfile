@@ -21,11 +21,11 @@ RUN curl -Lf -o /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-
     && curl -Lf -o /usr/bin/docker-compose https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) \
     && chmod +x /usr/bin/jq /usr/bin/docker-compose
 
-ENV VERSION=1.28
-RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_7/devel:kubic:libcontainers:stable.repo
-RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:${VERSION}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo
-RUN yum install  cri-o cri-tools
-# RUN yum list available kubectl
+# ENV VERSION=1.28
+# RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_7/devel:kubic:libcontainers:stable.repo
+# RUN curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:${VERSION}/CentOS_7/devel:kubic:libcontainers:stable:cri-o:${VERSION}.repo
+# RUN yum install  cri-o cri-tools
+# # RUN yum list available kubectl
 
 RUN yum install -y kubectl kubeadm kubelet --disableexcludes=kubernetes 
 
