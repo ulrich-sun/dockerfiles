@@ -7,14 +7,10 @@ RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo; \
     sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo; \
     sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo; \
     yum -y update;
-    
+
 RUN curl -fsSL https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
 
-RUN yum install -y docker-ce \
-    && docker-ce-cli \ 
-    && containerd.io \
-    && docker-buildx-plugin \
-    && docker-compose-plugin curl git 
+RUN yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin curl git 
 
 RUN curl -Lf -o /usr/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
     && curl -Lf -o /usr/bin/docker-compose https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) \
